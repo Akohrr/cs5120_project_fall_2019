@@ -102,3 +102,13 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+
+#Py charm files
+.idea
+
+insertion_sort.py
+
+genDataset.py
+
+TODO.txt
