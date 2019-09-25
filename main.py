@@ -22,8 +22,8 @@ def insertion_sort(input_data_file_path: str):
     end = time.time()
     execution_time = (end-start) * 1000
 
-    with open('output_data.txt', 'a') as writer:
-        writer.write(f'{len(input_data)} {num_of_comparisons} {execution_time}\n')
+    with open('output_data.txt', 'a') as writer_1:
+        writer_1.write(f'{len(input_data)} {num_of_comparisons} {execution_time}\n')
 
     return input_data
 
@@ -75,6 +75,3 @@ if __name__ == '__main__':
             for val in args.custom_values:
                 writer.write('{}\n'.format(val))
         print('Running insertion sort on {} would give {}'.format(args.custom_values, insertion_sort(file_name)))
-
-
-
