@@ -1,8 +1,11 @@
 import time
 
 
+num_of_comparisons = 0
+
+
 def merge(input_data, p, q, r):
-    num_of_comparisons = 0
+    global num_of_comparisons
     n1 = q - p + 1
     n2 = r - q
 
@@ -40,8 +43,6 @@ def merge(input_data, p, q, r):
         j += 1
         k += 1
 
-    return num_of_comparisons
-
 
 def merge_sort(input_data, p, r):
     """
@@ -51,19 +52,24 @@ def merge_sort(input_data, p, r):
     :param r: len(input_data) - 1
     :return: dict showing summary of results
     """
-    num_of_comparisons = 0
-    start = time.time()
 
     if p < r:
         q = (p + (r - 1)) // 2
         merge_sort(input_data, p, q)
         merge_sort(input_data, q + 1, r)
-        num_of_comparisons = merge(input_data, p, q, r)
+        merge(input_data, p, q, r)
 
+
+def call_merge_sort(arr):
+    global num_of_comparisons
+    start = time.time()
+    merge_sort(arr, 0, len(arr)-1)
     end = time.time()
     execution_time = (end - start) * 1000  # time in milliseconds
     with open('merge_sort_output_data.csv', 'a') as writer:
-        writer.write(f'{len(input_data)}, {num_of_comparisons}, {execution_time}\n')
-    output = {'sorted_array': input_data, 'execution_time': execution_time, 'num_of_comparisons': num_of_comparisons}
+        print('*' * 15)
+        writer.write(f'{len(arr)}, {num_of_comparisons}, {execution_time}\n')
+    output = {'sorted_array': arr, 'execution_time': execution_time, 'num_of_comparisons': num_of_comparisons}
+    num_of_comparisons = 0
     return output
 

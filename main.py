@@ -1,8 +1,8 @@
 import argparse
 import time
 import os
-from merge_sort import merge_sort
-from three_way_merge_sort import three_way_merge_sort
+from merge_sort import call_merge_sort
+from three_way_merge_sort import call_three_way_merge_sort
 from heap_sort import heap_sort
 from insertion_sort import insertion_sort
 
@@ -14,14 +14,18 @@ def covert_input_file_to_arr(file_path):
 
 
 def run_algorithm(input_arr):
-    print('Running {} on array of length {}'.format(insertion_sort.__name__, len(input_arr)))
-    insertion_sort(input_arr)
-    print('Running {} on array of length {}'.format(merge_sort.__name__, len(input_arr)))
-    merge_sort(input_arr, 0, len(input_arr)-1)
-    print('Running {} on array of length {}'.format(heap_sort.__name__, len(input_arr)))
-    heap_sort(input_arr)
-    print('Running {} on array of length {}'.format(three_way_merge_sort.__name__, len(input_arr)))
-    three_way_merge_sort(input_arr, 1, len(input_arr))
+    sorting_algorithms = [call_merge_sort, call_three_way_merge_sort, insertion_sort, heap_sort]
+    for algorithm in sorting_algorithms:
+        print('Running {} on array of length {}'.format(algorithm.__name__, len(input_arr)))
+        algorithm(input_arr)
+
+    # insertion_sort(input_arr)
+    # print('Running {} on array of length {}'.format(merge_sort.__name__, len(input_arr)))
+    # merge_sort(input_arr, 0, len(input_arr)-1)
+    # print('Running {} on array of length {}'.format(heap_sort.__name__, len(input_arr)))
+    # heap_sort(input_arr)
+    # print('Running {} on array of length {}'.format(three_way_merge_sort.__name__, len(input_arr)))
+    # three_way_merge_sort(input_arr, 1, len(input_arr))
 
 
 if __name__ == '__main__':

@@ -42,9 +42,8 @@ def three_way_merge_sort(input_data, p, r):
     :param r: length of the input data i.e len(input_data)
     :return: output, a dictionary with summary of the data
     """
-    start = time.time()
     if len(input_data[p - 1: r]) < 2:
-        pass
+        return input_data
     else:
         mid1 = p + ((r - p) // 3)
         mid2 = p + 2 * ((r - p) // 3)
@@ -53,11 +52,18 @@ def three_way_merge_sort(input_data, p, r):
         three_way_merge_sort(input_data, mid1 + 1, mid2 + 1)
         three_way_merge_sort(input_data, mid2 + 2, r)
         three_way_merge(input_data, p, mid1, mid2, r)
+        return input_data
 
+
+def call_three_way_merge_sort(arr):
+    global num_of_comparisons
+    start = time.time()
+    three_way_merge_sort(arr, 1, len(arr))
     end = time.time()
     execution_time = (end-start) * 1000  # time in milliseconds
     with open('three_way_merge_sort_output_data.csv', 'a') as writer:
-        writer.write(f'{len(input_data)}, {num_of_comparisons}, {execution_time}\n')
+        writer.write(f'{len(arr)}, {num_of_comparisons}, {execution_time}\n')
 
-    output = {'sorted_array': input_data, 'execution_time': execution_time, 'num_of_comparison': num_of_comparisons}
+    output = {'sorted_array': arr, 'execution_time': execution_time, 'num_of_comparison': num_of_comparisons}
+    num_of_comparisons = 0
     return output
