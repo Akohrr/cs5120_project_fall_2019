@@ -107,8 +107,6 @@ venv.bak/
 #Py charm files
 .idea
 
-insertion_sort.py
-
 genDataset.py
 
 TODO.txt
