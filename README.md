@@ -19,7 +19,7 @@ python main.py -fp path/to/input_data --no-default
 ```
 or 
 ```
-python main.py --file-path path/to/input_data
+python main.py --file-path path/to/input_data --no-default
 ```
 
 To run insertion sort a list of values e.g 8 1 4, enter the following in the command line. The list of values have to separated by a space
@@ -31,4 +31,14 @@ To run insertion sort a list of values e.g 8 1 4, enter the following in the com
 ```
 python main.py --no-default --custom-values 8 1 4
 ```
+
+For more information you can the following in the command line
+```
+python main.py -h
+```
+
+### Note:
+After insertion sort has been run on an input data, the size of input, number of comparisons made and execution time in milliseconds is recorded in output_data.txt file
+
+
 For more information on how to generate the input data, you can view the custom implementation in `gen_input_data.py` or online: [here](https://repl.it/@AkohAtadoga/generatedataset)
