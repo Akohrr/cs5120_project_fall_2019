@@ -67,7 +67,6 @@ def call_merge_sort(arr):
     end = time.time()
     execution_time = (end - start) * 1000  # time in milliseconds
     with open('merge_sort_output_data.csv', 'a') as writer:
-        print('*' * 15)
         writer.write(f'{len(arr)}, {num_of_comparisons}, {execution_time}\n')
     output = {'sorted_array': arr, 'execution_time': execution_time, 'num_of_comparisons': num_of_comparisons}
     num_of_comparisons = 0

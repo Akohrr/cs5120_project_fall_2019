@@ -17,15 +17,7 @@ def run_algorithm(input_arr):
     sorting_algorithms = [call_merge_sort, call_three_way_merge_sort, insertion_sort, heap_sort]
     for algorithm in sorting_algorithms:
         print('Running {} on array of length {}'.format(algorithm.__name__, len(input_arr)))
-        algorithm(input_arr)
-
-    # insertion_sort(input_arr)
-    # print('Running {} on array of length {}'.format(merge_sort.__name__, len(input_arr)))
-    # merge_sort(input_arr, 0, len(input_arr)-1)
-    # print('Running {} on array of length {}'.format(heap_sort.__name__, len(input_arr)))
-    # heap_sort(input_arr)
-    # print('Running {} on array of length {}'.format(three_way_merge_sort.__name__, len(input_arr)))
-    # three_way_merge_sort(input_arr, 1, len(input_arr))
+        algorithm(input_arr.copy())
 
 
 if __name__ == '__main__':
@@ -64,6 +56,7 @@ if __name__ == '__main__':
             n_n = os.listdir('input_data/{}'.format(folder))
             for file in n_n:
                 file_name = f'input_data/{folder}/{file}'
+                print('Filename is {}'.format(file_name))
                 default_input_data = covert_input_file_to_arr(file_name)
                 run_algorithm(default_input_data)
 
