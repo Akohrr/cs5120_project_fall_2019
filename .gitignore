@@ -110,3 +110,5 @@ venv.bak/
 genDataset.py
 
 TODO.txt
+
+.DS_STORE
