@@ -7,8 +7,6 @@ Note: This program requires an installation of Python 3.7 or higher
 
 I used python to implement heap sort, merge sort, 3-way merge sort and insertion sort
 
-The implementation of insertion sort is in `main.py` file and sample input data is in the `input_data` directory <br> <br>
-
 On unix system run all the algorithms on the `input_data` directory, enter the following in the command line
 ```
 $ bash run.sh
