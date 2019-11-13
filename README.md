@@ -1,54 +1,43 @@
-# CS 5120 Project 1 submission
+# CS 5120 Project 2 submission
 
 
 ## Name: **Akoh Atadoga**
 
 Note: This program requires an installation of Python 3.7 or higher
 
-I used python to implement heap sort, merge sort, 3-way merge sort and insertion sort
+I used python to implement a solution to the Change-Making problem using:
+1) Greedy algorithm
+2) Straight forward Recursive algorithm
+3) Bottom-up dynamic algorithm
 
-On unix system run all the algorithms on the `input_data` directory, enter the following in the command line
+On unix system run all the algorithms on the test cases given in the assignment and randomly generated test cases, as shown in `input_data.txt` file, enter the following in the command line
 ```
 $ bash run.sh
 ```
 
-To run all the algorithms on the `input_data` directory, enter the following in the command line
+To run all the algorithms on custom input, enter the following into the command line:
 ```
-python main.py
+$ python main.py [amount] [number_of_coins] [coins_as_space_seperated_values]
 ```
+**Note**: 
+1) The order must be maintained for the algorithms to work.
+2) If all the data is not supplied, the default data in `input_data.txt` is used.
 
-To run all the algorithms on custom input data, enter the following into the command line:
-```
-python main.py path/to/input_data -fp --no-default
-```
-or 
-```
-python main.py path/to/input_data --file-path --no-default
-```
 
-To run all the algorithms on a list of values e.g 8 1 4, enter the following in the command line. The list of values have to separated by a space
+To run all the algorithms on amount of 63 with a US coin system of 4 values which are 1 5 10 25, enter the following in the command line. The values have to separated by a space
 ```
-python main.py --no-default -cv 8 1 4
-```
-or 
-To run all the algorithms on a list of values e.g 8 1 4, enter the following in the command line. The list of values have to separated by a space
-```
-python main.py --no-default --custom-values 8 1 4
-```
-
-For more information you can the following in the command line
-```
-python main.py -h
+$ python main.py 63 4 1 5 10 25
 ```
 
 ### Note:
-After running all the algorithms on the input data, the size of input, number of comparisons made and execution time in milliseconds is recorded in (name of the algorithm)_output_data.csv file.
-For example output of merge sort would be `merge_sort_output_data.csv`.
-The output data is in the order: 
-1. identical data
-2. random data
-3. reverse sorted data
-4. sorted data
+After running all the algorithms on the input: the amount used, the coin system, number of coins used and execution time in milliseconds is recorded in `name_of_the_algorithm_solution_output.txt` file.
+For example, the output of the recursive algorithm is in `recursive_solution_output.txt`.  
+
+A line of output in `greedy_solution_output.txt` and `bottom_up_dynamic_solution_output.txt` would look like
+`1 5 10 25, 0.00044585` where the values on the left of the comma are coins used while
+the values on the right of the comma is the time taken to execute the algorithm on a given set of data<br>
 
 
-For more information on how to generate the input data, you can view the custom implementation in `gen_input_data.py` file or online: [here](https://repl.it/@AkohAtadoga/generatedataset)
+A line of output in `recursive_solution_output.txt` would look like
+`4, 0.012159347534179688` where the values on the left of the comma is the coin count
+the values on the right of the comma is the time taken to execute the recursive algorithm on a given set of data<br>

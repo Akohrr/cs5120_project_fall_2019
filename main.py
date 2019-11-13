@@ -1,75 +1,46 @@
-import argparse
+from minimum_coin_change_algorithms import greedy_solution, recursive_solution, bottom_up_dynamic_solution
+import sys
 import time
-import os
-from merge_sort import call_merge_sort
-from three_way_merge_sort import call_three_way_merge_sort
-from heap_sort import heap_sort
-from insertion_sort import insertion_sort
+
+algorithms = [recursive_solution, greedy_solution, bottom_up_dynamic_solution]
 
 
-def covert_input_file_to_arr(file_path):
-    with open(file_path, 'r') as reader:
-        arr = [int(num) for num in reader]
-    return arr
+def run_all_algorithms(test_data, file_name):
+    for algorithm in algorithms:
+        for raw_data in test_data[:-1]:
+            data = raw_data.split(' ')
+            print(f'Running {algorithm.__name__} on {data}')
+            if len(data) > 1:
+                amount = int(data[0])
+                coin_system = [int(num) for num in data[2:]]
+                start_time = time.time()
+                coins_used = algorithm(amount, coin_system)
+                end_time = time.time()
+                execution_time = (end_time - start_time) * 1000  # time in milliseconds
+                if algorithm.__name__ == 'recursive_solution':
+                    # in the recursive algorithm, just report the coin count and time taken to run the algorithm
+                    with open(f'{algorithm.__name__}_{file_name}', 'a') as writer_1:
+                        writer_1.write(f"{len(coin_system)}, {execution_time}\n")
+                else:
+                    # for other algorithms, report the coins used and time taken to run the algorithm
+                    with open(f'{algorithm.__name__}_{file_name}', 'a') as writer_1:
+                        writer_1.write(f"{' '.join([str(num) for num in coin_system])}, {execution_time}\n")
+            else:
+                print('Wrong data format. Read the README.md file that accompanies the project')
 
 
-def run_algorithm(input_arr):
-    sorting_algorithms = [call_merge_sort, call_three_way_merge_sort, insertion_sort, heap_sort]
-    for algorithm in sorting_algorithms:
-        print('Running {} on array of length {}'.format(algorithm.__name__, len(input_arr)))
-        algorithm(input_arr.copy())
+def convert_input_data(file_to_use):
+    with open(file_to_use, 'r') as reader:
+        _data = reader.read().split('\n')
+        run_all_algorithms(_data, file_name='output.txt')
 
 
 if __name__ == '__main__':
-    help_message = """
-    Run insertion sort algorithm on a set of input data. To run insertion sort on only custom data, you have to use the
-    --no-default flag unless it would run on both the sample data and custom data
-    """
-    parser = argparse.ArgumentParser(description=help_message)
-
-    parser.add_argument('-fp', '--filepath',
-                        action='store',
-                        nargs='?',
-                        help='File path to input data',
-                        dest='file_path',
-                        metavar='path/to/file',
-                        )
-
-    parser.add_argument('-cv', '--custom-values',
-                        action='store',
-                        nargs='*',
-                        type=int,
-                        help='List of numbers to sorted separated by space e.g 8 1 4',
-                        dest='custom_values',
-                        )
-
-    parser.add_argument('--no-default',
-                        help='Do not insertion sort on the input data provided',
-                        action='store_false',
-                        dest='default_mode',
-                        )
-    args = parser.parse_args()
-
-    if args.default_mode:
-        input_dirs = os.listdir('input_data')
-        for folder in input_dirs:
-            n_n = os.listdir('input_data/{}'.format(folder))
-            for file in n_n:
-                file_name = f'input_data/{folder}/{file}'
-                print('Filename is {}'.format(file_name))
-                default_input_data = covert_input_file_to_arr(file_name)
-                run_algorithm(default_input_data)
-
-    if args.file_path:
-        custom_arr = covert_input_file_to_arr(args.file_path)
-        run_algorithm(custom_arr)
-
-    if args.custom_values:
-        file_name = 'custom_values_{0:.0f}.txt'.format(time.time())
-        with open(file_name, 'w+') as writer:
-            for val in args.custom_values:
-                writer.write('{}\n'.format(val))
-
-        custom_value_arr = covert_input_file_to_arr(file_name)
-        run_algorithm(custom_value_arr)
-
+    if len(sys.argv) > 3:
+        post_fix = time.time()
+        file = 'input_data_{0:.0f}.txt'.format(post_fix)
+        with open(file, 'w') as writer:
+            writer.write(f'{" ".join(sys.argv[1:])}\n')
+        convert_input_data(file)
+    else:
+        convert_input_data('input_data.txt')
