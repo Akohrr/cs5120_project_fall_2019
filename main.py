@@ -20,11 +20,11 @@ def run_all_algorithms(test_data, file_name):
                 if algorithm.__name__ == 'recursive_solution':
                     # in the recursive algorithm, just report the coin count and time taken to run the algorithm
                     with open(f'{algorithm.__name__}_{file_name}', 'a') as writer_1:
-                        writer_1.write(f"{len(coin_system)}, {execution_time}\n")
+                        writer_1.write(f"{len(coin_system)}\n{execution_time}\n")
                 else:
                     # for other algorithms, report the coins used and time taken to run the algorithm
                     with open(f'{algorithm.__name__}_{file_name}', 'a') as writer_1:
-                        writer_1.write(f"{' '.join([str(num) for num in coin_system])}, {execution_time}\n")
+                        writer_1.write(f"{' '.join([str(num) for num in coin_system])}\n{execution_time}\n")
             else:
                 print('Wrong data format. Read the README.md file that accompanies the project')
 

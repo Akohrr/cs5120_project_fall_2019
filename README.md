@@ -34,10 +34,22 @@ After running all the algorithms on the input: the amount used, the coin system,
 For example, the output of the recursive algorithm is in `recursive_solution_output.txt`.  
 
 A line of output in `greedy_solution_output.txt` and `bottom_up_dynamic_solution_output.txt` would look like
-`1 5 10 25, 0.00044585` where the values on the left of the comma are coins used while
-the values on the right of the comma is the time taken to execute the algorithm on a given set of data<br>
+<br>`1 5 10 25`<br>
+`0.00044585`<br>
+. <br>
+. <br>
+.<br>
+<br>
+where the values on the top are coins used while
+the value below it is the time taken to execute the algorithm on a given set of data.<br>
 
 
 A line of output in `recursive_solution_output.txt` would look like
-`4, 0.012159347534179688` where the values on the left of the comma is the coin count
-the values on the right of the comma is the time taken to execute the recursive algorithm on a given set of data<br>
+<br>`4` <br> 
+`0.012159347534179688` <br>
+. <br>
+. <br>
+.<br>
+<br>
+ where the values on the top is the coin count
+the value below it is the time taken to execute the recursive algorithm on a given set of data<br>
