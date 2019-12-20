@@ -2,7 +2,6 @@ import random
 import time
 
 
-# noinspection DuplicatedCode
 def generate_edges(no_of_edges, node, vertices, graph):
     _edges = []
     options = vertices[:]
@@ -20,7 +19,6 @@ def generate_edges(no_of_edges, node, vertices, graph):
     return edges
 
 
-# noinspection DuplicatedCode
 def _generate_graph_helper(number_of_nodes, number_of_edges):
     vertices = [str(_) for _ in range(1, number_of_nodes+1)]
     graph = dict()
@@ -29,7 +27,6 @@ def _generate_graph_helper(number_of_nodes, number_of_edges):
     return graph
 
 
-# noinspection DuplicatedCode
 def get_number_of_edges(__graph):
     no_of_nodes = 0
     no_of_edges = 0
@@ -40,7 +37,6 @@ def get_number_of_edges(__graph):
     return no_of_nodes, no_of_edges
 
 
-# noinspection DuplicatedCode
 def bfs_min_path(graph, start_node, end_node):
     visited_path = []
 
