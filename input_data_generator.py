@@ -35,11 +35,13 @@ def generate_random_numbers(count, data_type='random_data'):
 
 
 def create_input_data_files():
-    for input_data_size in input_data_sizes:
-        file_name = 'input_data/{}'.format(input_data_size)
+    for input_data_type in input_data_types:
+        file_name = 'input_data/{}'.format(input_data_type)
         if not os.path.exists(file_name):
             os.mkdir(file_name)
-        for input_data_type in input_data_types:
-            with open(file_name+'/{}.txt'.format(input_data_type), 'w+') as writer:
+        for input_data_size in input_data_sizes:
+            with open(file_name+'/{}.txt'.format(input_data_size), 'w+') as writer:
                 for num in generate_random_numbers(count=input_data_size, data_type=input_data_type):
                     writer.write('{}\n'.format(num))
+
+create_input_data_files()

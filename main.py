@@ -1,31 +1,23 @@
 import argparse
 import time
 import os
+from merge_sort import call_merge_sort
+from three_way_merge_sort import call_three_way_merge_sort
+from heap_sort import heap_sort
+from insertion_sort import insertion_sort
 
 
-def insertion_sort(input_data_file_path: str):
+def covert_input_file_to_arr(file_path):
+    with open(file_path, 'r') as reader:
+        arr = [int(num) for num in reader]
+    return arr
 
-    with open(input_data_file_path, 'r') as reader:
-        input_data = [int(num) for num in reader]
 
-    num_of_comparisons = 0
-    start = time.time()
-
-    for j in range(1, len(input_data)):
-        key = input_data[j]
-        i = j - 1
-        while i >= 0 and input_data[i] > key:
-            num_of_comparisons += 1
-            input_data[i + 1] = input_data[i]
-            i = i - 1
-        input_data[i+1] = key
-    end = time.time()
-    execution_time = (end-start) * 1000
-
-    with open('output_data.txt', 'a') as writer_1:
-        writer_1.write(f'{len(input_data)} {num_of_comparisons} {execution_time}\n')
-
-    return input_data
+def run_algorithm(input_arr):
+    sorting_algorithms = [call_merge_sort, call_three_way_merge_sort, insertion_sort, heap_sort]
+    for algorithm in sorting_algorithms:
+        print('Running {} on array of length {}'.format(algorithm.__name__, len(input_arr)))
+        algorithm(input_arr.copy())
 
 
 if __name__ == '__main__':
@@ -63,15 +55,21 @@ if __name__ == '__main__':
         for folder in input_dirs:
             n_n = os.listdir('input_data/{}'.format(folder))
             for file in n_n:
-                print(f'Current file is: input_data/{folder}/{file}')
-                insertion_sort(f'input_data/{folder}/{file}')
+                file_name = f'input_data/{folder}/{file}'
+                print('Filename is {}'.format(file_name))
+                default_input_data = covert_input_file_to_arr(file_name)
+                run_algorithm(default_input_data)
 
     if args.file_path:
-        insertion_sort(args.file_path)
+        custom_arr = covert_input_file_to_arr(args.file_path)
+        run_algorithm(custom_arr)
 
     if args.custom_values:
         file_name = 'custom_values_{0:.0f}.txt'.format(time.time())
         with open(file_name, 'w+') as writer:
             for val in args.custom_values:
                 writer.write('{}\n'.format(val))
-        print('Running insertion sort on {} would give {}'.format(args.custom_values, insertion_sort(file_name)))
+
+        custom_value_arr = covert_input_file_to_arr(file_name)
+        run_algorithm(custom_value_arr)
+
